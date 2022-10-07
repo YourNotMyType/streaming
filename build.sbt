@@ -7,7 +7,9 @@ lazy val root = (project in file("."))
   .settings(
     name := "ScalaClient",
     libraryDependencies ++= Seq(
+      "com.datastax.oss" % "java-driver-core" % "4.15.0",
       "dev.zio" %% "zio" % "2.0.2",
+      "dev.zio" %% "zio-streams" % "2.0.2",
       "dev.zio" %% "zio-test" % "2.0.2" % Test
     ),
     testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")

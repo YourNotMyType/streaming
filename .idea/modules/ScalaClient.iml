@@ -11,15 +11,47 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sbt: com.datastax.oss:java-driver-core:4.15.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.datastax.oss:java-driver-shaded-guava:25.1-jre-graal-sub-1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.datastax.oss:native-protocol:1.5.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-annotations:2.13.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-core:2.13.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-databind:2.13.2.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jffi:1.3.9:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jffi:1.3.9:native:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jnr-a64asm:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jnr-constants:0.10.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jnr-ffi:2.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jnr-posix:3.1.15:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.jnr:jnr-x86asm:1.0.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spotbugs:spotbugs-annotations:3.1.12:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.stephenc.jcip:jcip-annotations:1.0-1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.code.findbugs:jsr305:3.0.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe:config:1.4.1:jar" level="project" />
     <orderEntry type="library" name="sbt: dev.zio:izumi-reflect-thirdparty-boopickle-shaded_3:2.1.3:jar" level="project" />
     <orderEntry type="library" name="sbt: dev.zio:izumi-reflect_3:2.1.3:jar" level="project" />
     <orderEntry type="library" name="sbt: dev.zio:zio-internal-macros_3:2.0.2:jar" level="project" />
     <orderEntry type="library" name="sbt: dev.zio:zio-stacktracer_3:2.0.2:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: dev.zio:zio-streams_3:2.0.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: dev.zio:zio-streams_3:2.0.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: dev.zio:zio-test_3:2.0.2:jar" level="project" />
     <orderEntry type="library" name="sbt: dev.zio:zio_3:2.0.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.dropwizard.metrics:metrics-core:4.1.18:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-buffer:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-codec:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-common:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-handler:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-resolver:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.netty:netty-transport:4.1.77.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.hdrhistogram:HdrHistogram:2.1.12:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ow2.asm:asm-analysis:9.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ow2.asm:asm-commons:9.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ow2.asm:asm-tree:9.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ow2.asm:asm-util:9.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ow2.asm:asm:9.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.portable-scala:portable-scala-reflect_2.13:1.1.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.reactivestreams:reactive-streams:1.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.13.8:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala3-library_3:3.1.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:1.7.30:jar" level="project" />
   </component>
 </module>

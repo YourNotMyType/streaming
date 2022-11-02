@@ -1,7 +1,7 @@
-package cput.streaming.respositories.text
+package cput.streaming.repositories.text
 
 import cput.streaming.domain.TextData
-import cput.streaming.respositories.Repository
+import cput.streaming.repositories.Repository
 
 trait CassandraRepo extends Repository[TextData] {
 

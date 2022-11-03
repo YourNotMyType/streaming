@@ -1,16 +1,34 @@
-ThisBuild / scalaVersion     := "3.1.3"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+import Dependencies._
+import com.typesafe.sbt.packager.docker.Cmd
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "ScalaClient",
-    libraryDependencies ++= Seq(
-      "com.datastax.oss" % "java-driver-core" % "4.15.0",
-      "dev.zio" %% "zio" % "2.0.2",
-      "dev.zio" %% "zio-streams" % "2.0.2",
-      "dev.zio" %% "zio-test" % "2.0.2" % Test
-    ),
-    testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
-  )
+ThisBuild / organization := "cput.streaming"
+ThisBuild / version      := "0.0.1"
+
+lazy val dependencies =
+  STTP.all ++
+    General.all ++
+    Config.all ++
+    ZIO.all ++
+    Logging.all ++
+    Testing.all ++
+    CassandraDrivers.all
+
+lazy val projectDefinition = Seq(
+  name := "ScalaClient",
+  testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework"),
+  libraryDependencies ++= dependencies,
+  scalacOptions ++= Seq("-Ymacro-annotations"),
+)
+lazy val root              = (project in file("."))
+  .enablePlugins(JavaAppPackaging)
+  .settings(BuildHelper.stdSettings)
+  .settings(projectDefinition)
+addCommandAlias("fmt", "scalafmt; Test / scalafmt; sFix;")
+addCommandAlias("fmtCheck", "scalafmtCheck; Test / scalafmtCheck; sFixCheck")
+addCommandAlias("sFix", "scalafix OrganizeImports; Test / scalafix OrganizeImports")
+addCommandAlias(
+  "sFixCheck",
+  "scalafix --check OrganizeImports; Test / scalafix --check OrganizeImports",
+)
+
+resolvers += "jitpack" at "https://jitpack.io"

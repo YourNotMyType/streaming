@@ -132,10 +132,19 @@ object Dependencies {
   }
 
   object CassandraDrivers {
-    private val version = "4.14.1"
+    private val versionQueryBuilder = "4.14.1"
     private val virgilVersion = "0.10.2-zio2"
+    private val dataStaxSparkVersion = "3.2.0"
+    private val apacheFlinkCassandraVersion = "1.16.0"
+    private val pulsarIoCassandraVersion = "2.10.2"
+    private val apacheKafkaVersion = "3.3.1"
+
     val virgil = "com.github.kaizen-solutions.virgil" %% "virgil" % virgilVersion
-    val dataStaxQueryBuilder = "com.datastax.oss" % "java-driver-query-builder" % version
-    val all: Seq[ModuleID] = Seq(virgil, dataStaxQueryBuilder)
+    val dataStaxQueryBuilder = "com.datastax.oss" % "java-driver-query-builder" % versionQueryBuilder
+    val dataStaxSpark = "com.datastax.spark" %% "spark-cassandra-connector" % dataStaxSparkVersion
+    val apacheFlinkCassandra = "org.apache.flink" %% "flink-connector-cassandra" % apacheFlinkCassandraVersion
+    val pulsarIoCassandra = "org.apache.pulsar" % "pulsar-io-cassandra" % pulsarIoCassandraVersion
+    val apacheKafka = "org.apache.kafka" % "kafka-clients" % apacheKafkaVersion
+    val all: Seq[ModuleID] = Seq(virgil, dataStaxQueryBuilder, dataStaxSpark, apacheFlinkCassandra,pulsarIoCassandra, apacheKafka)
   }
 }

@@ -137,12 +137,14 @@ object Dependencies {
     private val pulsarIoCassandraVersion = "2.10.2"
     private val apacheKafkaVersion = "3.3.1"
     private val dataStaxJavaCassandraVersion = "4.15.0"
+    private val apacheBeamVersion = "2.42.0"
 
     val virgil = "com.github.kaizen-solutions.virgil" %% "virgil" % virgilVersion
     val dataStaxQueryBuilder = "com.datastax.oss" % "java-driver-query-builder" % versionQueryBuilder
     val dataStaxJavaCassandra = "com.datastax.oss" % "java-driver-core" % dataStaxJavaCassandraVersion
     val pulsarIoCassandra = "org.apache.pulsar" % "pulsar-io-cassandra" % pulsarIoCassandraVersion
     val apacheKafka = "org.apache.kafka" % "kafka-clients" % apacheKafkaVersion
-    val all: Seq[ModuleID] = Seq(virgil, dataStaxQueryBuilder, dataStaxJavaCassandra,pulsarIoCassandra, apacheKafka)
+    val apacheBeam = "org.apache.beam" % "beam-sdks-java-io-cassandra" % apacheBeamVersion
+    val all: Seq[ModuleID] = Seq(virgil, dataStaxQueryBuilder, dataStaxJavaCassandra,pulsarIoCassandra, apacheKafka, apacheBeam)
   }
 }

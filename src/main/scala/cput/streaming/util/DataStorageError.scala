@@ -9,6 +9,7 @@ object DataStorageError{
     ZIO.logInfo(s"RepositoryError ${error.getMessage}")
   }
   case class  CassandraError(error: Throwable) extends DataStorageError{
+    println(s"The Database Error is ${error}")
     ZIO.logInfo(s"RepositoryError ${error.getMessage}")
   }
 

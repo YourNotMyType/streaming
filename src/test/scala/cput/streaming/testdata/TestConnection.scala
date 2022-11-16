@@ -41,15 +41,15 @@ object TestConnection {
             .addContactPoint(InetSocketAddress.createUnresolved(host, port)),
         )
         createKeyspace =
-          cql"""CREATE KEYSPACE IF NOT EXISTS hashdata
+          cql"""CREATE KEYSPACE IF NOT EXISTS stream
           WITH REPLICATION = {
             'class': 'SimpleStrategy',
             'replication_factor': 1
           }""".mutation
-        useKeyspace    = cql"USE hashdata".mutation
+        useKeyspace    = cql"USE stream".mutation
         _ <- session.execute(createKeyspace).runDrain
         _ <- session.execute(useKeyspace).runDrain
-        _ <- runMigration(session, "articles-schema.cql")
+        _ <- runMigration(session, "text-schema.cql")
       } yield session
 
     val containerLayer: ULayer[TestCassandraContainer]             =

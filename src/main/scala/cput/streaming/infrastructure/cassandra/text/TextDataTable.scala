@@ -7,10 +7,10 @@ import io.kaizensolutions.virgil.CQLExecutor
 import zio.ZIO
 import zio.macros.accessible
 
-@accessible[TextData]
-trait TextDataTable extends Infrastructure[TextData]{
+@accessible
+trait TextDataTable{
   def Id = "id"
-  def text = "date"
+  def text = "text"
   def create(data: TextData): ZIO[CQLExecutor, DataStorageError, Option[TextData]]
   def read(id: String): ZIO[CQLExecutor, DataStorageError, Option[TextData]]
   def update(data: TextData): ZIO[CQLExecutor, DataStorageError, Option[TextData]]

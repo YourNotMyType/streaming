@@ -9,7 +9,7 @@ import io.kaizensolutions.virgil.dsl._
 import zio.{ZIO, ZLayer}
 
 final case class TextDataTableImpl() extends TextDataTable {
-  private lazy val TableName = "text_table"
+  private lazy val TableName = "text_data"
 
   override def create(data: TextData): ZIO[CQLExecutor, DataStorageError, Option[TextData]] =
     InsertBuilder(TableName)
@@ -77,5 +77,5 @@ final case class TextDataTableImpl() extends TextDataTable {
 }
 
 object TextDataTableImpl extends (() => TextDataTable) {
-  val layer = ZLayer.succeed(TextDataTableImpl)
+  val layer = ZLayer.succeed(TextDataTableImpl())
 }

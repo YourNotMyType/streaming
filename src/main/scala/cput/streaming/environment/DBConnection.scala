@@ -20,22 +20,15 @@ object DBConnection {
   def readTimeoutMillis       = 150000000
 
   // HOSTS
-  val developmentHost: Seq[String] =
-    config.getStringList("cassandra.developmentHost").asScala.toList
   val productionHost: Seq[String]  = config.getStringList("cassandra.productionHost").asScala.toList
-
   // Data Centers
   val dataCenter1: String          = config.getString("cassandra.dataCenter1")
-  val dataCenter2: String          = config.getString("cassandra.dataCenter2")
-  // Environment
-  val isProduction: Boolean        = config.getBoolean("cassandra.isProduction")
-
   val keySpace: String               = config.getString("cassandra.keySpace")
-  val chunkSize: Int                 = config.getInt("cassandra.chunkSize")
-  // CLUSTERS
-  val productionClusterName: String  = config.getString("cassandra.productionClusterName")
-  val developmentClusterName: String = config.getString("cassandra.developmentClusterName")
 
+
+
+
+  // The test Container parameters
   val loader                                  =
     DriverConfigLoader
       .programmaticBuilder()
@@ -47,6 +40,7 @@ object DBConnection {
       .withDuration(DefaultDriverOption.REQUEST_TIMEOUT, Duration.ofSeconds(readTimeoutMillis))
       .endProfile()
       .build()
+
   lazy val prodConnector: ULayer[CQLExecutor] = {
     val cqlSessionBuilderLayer: ULayer[CqlSessionBuilder] = ZLayer.succeed(
       CqlSession
@@ -55,21 +49,13 @@ object DBConnection {
         .withKeyspace(keySpace)
         .withLocalDatacenter(dataCenter1)
         .addContactPoint(InetSocketAddress.createUnresolved(productionHost(0), PORT))
-        .withApplicationName("hashtable"),
+        .withApplicationName("stream"),
     )
     val executor: ZLayer[Any, Throwable, CQLExecutor]     =
       cqlSessionBuilderLayer >>> CQLExecutor.live
     executor.orDie
   }
 
-  lazy val create = createKeyspace(keySpace)
-    .ifNotExists()
-    .withNetworkTopologyStrategy(ImmutableMap.of(dataCenter1, 3, dataCenter2, 2))
-    .withDurableWrites(true)
 
-  lazy val redisConnection = new RedisConfig()
-  redisConnection
-    .setTransportMode(TransportMode.EPOLL)
-    .useSingleServer()
-    .setAddress("redis://127.0.0.1:6379")
+
 }

@@ -2,29 +2,28 @@ package cput.streaming.repositories.text.impl
 
 import com.datastax.oss.driver.api.core.cql.SimpleStatement
 import cput.streaming.domain.TextData
+import cput.streaming.environment.DBConnection.prodConnector
+import cput.streaming.infrastructure.cassandra.text.TextDataTable
 import cput.streaming.repositories.text.CassandraRepo
 import cput.streaming.util.DataStorageError
+import zio.{IO, ZIO, ZLayer}
 
-case class CassandraRepoImpl () extends CassandraRepo{
-
-  private val tableName = "text_data"
-
+case class CassandraRepoImpl (textDataTable: TextDataTable) extends CassandraRepo {
   override def create(data: TextData): IO[DataStorageError, Option[TextData]] =
-    SimpleStatement.builder(s"INSERT INTO $tableName (id, text) VALUES (${data.id},${data.text});").build
+    textDataTable.create(data).provide(prodConnector)
 
-  override def read(id: String): IO[DataStorageError, Option[TextData]] =
-    SimpleStatement.builder(s"SELECT * FROM $tableName WHERE id=$id;").build
+  override def read(id: String): IO[DataStorageError, Option[TextData]] = ???
 
-  override def update(data: TextData): IO[DataStorageError, Option[TextData]] =
-    SimpleStatement.builder(s"UPDATE $tableName SET text=${data.text} WHERE id=${data.id} IF EXISTS;").build
+  override def update(data: TextData): IO[DataStorageError, Option[TextData]] = ???
 
-  override def delete(data: TextData): IO[DataStorageError, Option[TextData]] =
-    SimpleStatement.builder(s"DELETE FROM $tableName WHERE id=${data.id} IF EXISTS;").build
+  override def delete(data: TextData): IO[DataStorageError, Option[TextData]] = ???
 
-  override def getAll: IO[DataStorageError, Seq[TextData]] =
-    SimpleStatement.builder(s"SELECT * FROM $tableName;").build
-
+  override def getAll: IO[DataStorageError, Seq[TextData]] = ???
 }
 object CassandraRepoImpl{
-  val layer = ZLayer.succeed(CassandraRepoImpl())
+  lazy val layer = ZLayer{
+    for{
+      textDataTable <- ZIO.service[TextDataTable]
+    } yield CassandraRepoImpl(textDataTable)
+  }
 }
